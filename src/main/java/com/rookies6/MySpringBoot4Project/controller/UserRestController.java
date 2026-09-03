@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,13 +31,37 @@ public class UserRestController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
+    public User getUserById(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);//Optional<User>
         //orElseThrow(Supplier) Supplier의 추상메서드 () -> T
+        User existUser = getUser(optionalUser);
+        return existUser;
+    }
+
+    private static User getUser(Optional<User> optionalUser) {
         User existUser = optionalUser.orElseThrow(
                 () -> new BusinessException("User Not Found", HttpStatus.NOT_FOUND));
         return existUser;
     }
 
+    @GetMapping
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/{email}/")
+    public User getUserByEmail(@PathVariable String email){
+        User existUser = getUser(userRepository.findByEmail(email));
+        return existUser;
+    }
+
+    @PatchMapping("/{email}/")
+    public User updateUser(@PathVariable String email,@RequestBody User userDetail) {
+        User existUser = getUser(userRepository.findByEmail(email));
+        //setter method 호출
+        existUser.setName(userDetail.getName());
+        //save()를 호출해야 update Query가 처리됨
+        return userRepository.save(existUser);
+    }
 
 }
