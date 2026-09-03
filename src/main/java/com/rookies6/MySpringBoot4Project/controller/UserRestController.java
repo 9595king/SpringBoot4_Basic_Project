@@ -7,6 +7,7 @@ import com.rookies6.myspringboot4project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,4 +65,10 @@ public class UserRestController {
         return userRepository.save(existUser);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id){
+        User existUser = getUser(userRepository.findById(id));
+        userRepository.delete(existUser);
+        return ResponseEntity.ok("Id = " + id + " User가 삭제 되었습니다.");
+    }
 }
