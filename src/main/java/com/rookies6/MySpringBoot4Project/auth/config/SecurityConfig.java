@@ -13,21 +13,27 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-@Bean
-public PasswordEncoder passwordEncoder() {
-return new BCryptPasswordEncoder();
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+
+        return new BCryptPasswordEncoder();
 }
 @Bean
 //authentication
 public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-UserDetails admin = User.withUsername("adminboot")
-.password(encoder.encode("pwd1"))
-.roles("ADMIN")
-.build();
-UserDetails user = User.withUsername("userboot")
-.password(encoder.encode("pwd2"))
-.roles("USER")
-.build();
-return new InMemoryUserDetailsManager(admin, user);
-}
+
+    //ADMIN 역할 사용자 생성
+    UserDetails admin = User.withUsername("adminboot")
+        .password(encoder.encode("pwd1"))
+        .roles("ADMIN")
+        .build();
+
+    //User 역할 사용자 생성
+    UserDetails user = User.withUsername("userboot")
+        .password(encoder.encode("pwd2"))
+        .roles("USER")
+        .build();
+    return new InMemoryUserDetailsManager(admin, user);
+    }
 }
