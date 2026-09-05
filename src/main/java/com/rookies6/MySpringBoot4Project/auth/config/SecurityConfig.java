@@ -21,23 +21,26 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityConfig {
-
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new UserInfoUserDetailsService();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
-
     @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider =
-                new DaoAuthenticationProvider(userDetailsService());
-        //authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
+    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
+        //ADMIN 역할 사용자 생성
+        UserDetails admin = User.withUsername("adminboot")
+                .password(encoder.encode("pwd1"))
+                .roles("ADMIN")
+                .build();
+        //USER 역할 사용자 생성
+        UserDetails user = User.withUsername("userboot")
+                .password(encoder.encode("pwd2"))
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(admin, user);
     }
-
+}
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
