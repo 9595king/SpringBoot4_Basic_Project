@@ -8,4 +8,4 @@
 * RestController
 * Validation
 * Advice 로 Exception Handling
-* CorsConfig 설정햣 
+* CorsConfig 설정
