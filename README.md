@@ -1,1 +1,11 @@
-# SpringBoot4_Basic_Project
+## SpringBoot 와 JPA 활용
+* student 단일 Entity
+* Entity, Repository
+* Service
+  * @Transaction
+  * Java8 Stream API 사용
+* DTO(DTA Transfer Object)
+* RestController
+* Validation
+* Advice 로 Exception Handling
+* CorsConfig 설정
