@@ -28,7 +28,7 @@ public class UserRestController {
 //    }
 
     @PostMapping
-    public User createUser(@RequestBody User userDetail){
+    public User createUser(@Valid @RequestBody User userDetail){
         return userRepository.save(userDetail);
     }
 
