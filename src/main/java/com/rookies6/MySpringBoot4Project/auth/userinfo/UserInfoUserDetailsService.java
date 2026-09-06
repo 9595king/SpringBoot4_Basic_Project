@@ -18,15 +18,16 @@ private PasswordEncoder passwordEncoder;
 
 @Override
 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-Optional<UserInfo> optionalUserInfo = repository.findByEmail(username);
-return optionalUserInfo.map(userInfo -> new UserInfoUserDetails(userInfo))
-        //userInfo.map(UserInfoUserDetails::new)
-        .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
+    Optional<UserInfo> optionalUserInfo = repository.findByEmail(username);
+    return optionalUserInfo.map(userInfo -> new UserInfoUserDetails(userInfo))
+                //userInfo.map(UserInfoUserDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
 }
 
 public String addUser(UserInfo userInfo) {
-userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-UserInfo savedUserInfo = repository.save(userInfo);
-return savedUserInfo.getName() + " user added!!";
+    //password 인코딩하기
+    userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+    UserInfo savedUserInfo = repository.save(userInfo);
+    return savedUserInfo.getName() + " user added!!";
     }
 }
