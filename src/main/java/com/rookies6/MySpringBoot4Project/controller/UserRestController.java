@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,11 +28,12 @@ public class UserRestController {
 //    }
 
     @PostMapping
-    public User createUser(@Valid @RequestBody User userDetail){
+    public User createUser(@RequestBody User userDetail){
         return userRepository.save(userDetail);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public User getUserById(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);//Optional<User>
         //orElseThrow(Supplier) Supplier의 추상메서드 () -> T
@@ -47,6 +48,7 @@ public class UserRestController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<User> getUsers() {
         return userRepository.findAll();
     }
@@ -77,5 +79,4 @@ public class UserRestController {
     public String welcome() {
         return "Welcome this endpoint is not secure";
     }
-
 }

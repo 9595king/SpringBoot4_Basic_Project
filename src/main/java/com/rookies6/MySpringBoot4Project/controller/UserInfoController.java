@@ -1,7 +1,7 @@
-package com.rookies6.MySpringBoot4Project.controller;
+package com.rookies6.myspringboot4project.controller;
 
-import com.rookies6.MySpringBoot4Project.auth.userinfo.UserInfo;
-import com.rookies6.MySpringBoot4Project.auth.userinfo.UserInfoUserDetailsService;
+import com.rookies6.myspringboot4project.auth.userinfo.UserInfo;
+import com.rookies6.myspringboot4project.auth.userinfo.UserInfoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
