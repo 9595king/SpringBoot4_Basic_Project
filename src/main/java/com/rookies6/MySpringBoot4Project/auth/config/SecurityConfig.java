@@ -1,7 +1,11 @@
 package com.rookies6.MySpringBoot4Project.auth.config;
 
+import com.rookies6.MySpringBoot4Project.auth.userinfo.UserInfoUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,16 +24,17 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/users/welcome","/userinfos/new").permitAll()
-                            .requestMatchers("/api/**").permitAll()
-                            .requestMatchers("/api/users/**").authenticated();
-                })
-                .formLogin(withDefaults())
-                .build();
+    public AuthenticationProvider authenticationProvider() {
+        return new UserInfoUserDetailsService();
+    }
+        @Bean
+        public AuthenticationProvider authenticationProvider(){
+            DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(userDetailsService());
+            authenticationProvider.setPasswordEncoder(passwordEncoder());
+            return authenticationProvider;                   ;
+        }
     }
 
     @Bean
