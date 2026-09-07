@@ -1,8 +1,8 @@
 package com.rookies6.myspringboot4project.auth.userinfo;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,10 +13,10 @@ public class UserInfoUserDetails implements UserDetails {
 
     private String email;
     private String password;
-    private List<GrantedAuthority> authorities;
-    private UserInfo userInfo;
+    private List<SimpleGrantedAuthority> authorities;
+    private com.rookies6.myspringboot4project.auth.userinfo.UserInfo userInfo;
 
-    public UserInfoUserDetails(UserInfo userInfo) {
+    public UserInfoUserDetails(com.rookies6.myspringboot4project.auth.userinfo.UserInfo userInfo) {
         this.userInfo = userInfo;
         this.email=userInfo.getEmail();
         this.password=userInfo.getPassword();
@@ -53,7 +53,7 @@ public class UserInfoUserDetails implements UserDetails {
         return email;
     }
     
-    public UserInfo getUserInfo() {
+    public com.rookies6.myspringboot4project.auth.userinfo.UserInfo getUserInfo() {
         return userInfo;
     }    
 

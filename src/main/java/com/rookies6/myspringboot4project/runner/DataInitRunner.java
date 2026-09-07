@@ -31,12 +31,6 @@ public class DataInitRunner implements CommandLineRunner {
     }
 
     private void createStudents() {
-
-        if (studentRepository.count() > 0) {
-            log.info("이미 학생 데이터가 있어 초기화를 건너뜁니다.");
-            return;
-        }
-
         log.info("Creating students...");
 
         // Computer Science students
