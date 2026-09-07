@@ -54,13 +54,13 @@ public class DefaultExceptionAdvice {
     }
 
     @ExceptionHandler(RuntimeException.class)
-    protected ResponseEntity<ErrorObject> handleException(RuntimeException e) {
-        ErrorObject errorObject = new ErrorObject();
+    protected ResponseEntity<com.rookies6.myspringboot4project.exception.advice.ErrorObject> handleException(RuntimeException e) {
+        com.rookies6.myspringboot4project.exception.advice.ErrorObject errorObject = new com.rookies6.myspringboot4project.exception.advice.ErrorObject();
         errorObject.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         errorObject.setMessage(e.getMessage());
 
         log.error(e.getMessage(), e);
 
-        return new ResponseEntity<ErrorObject>(errorObject, HttpStatusCode.valueOf(500));
+        return new ResponseEntity<com.rookies6.myspringboot4project.exception.advice.ErrorObject>(errorObject, HttpStatusCode.valueOf(500));
     }
 }
