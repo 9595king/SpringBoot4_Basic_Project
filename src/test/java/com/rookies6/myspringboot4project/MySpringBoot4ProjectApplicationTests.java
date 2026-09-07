@@ -8,7 +8,6 @@ class MySpringBoot4ProjectApplicationTests {
 
 	@Test
 	void contextLoads() {
-
 	}
 
 }
