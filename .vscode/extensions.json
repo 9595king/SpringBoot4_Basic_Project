@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "aeschli.vscode-css-formatter",
+    "anteprimorac.html-end-tag-labels",
+    "spywhere.guides",
+    "jakob101.RelativePath",
+    "wangtao0101.vscode-js-import",
+    "natecorkish.html-css-class-completion",
+    "jawandarajbir.react-vscode-extension-pack",
+    "xabikos.ReactSnippets",
+    "rangav.vscode-thunder-client",
+    "ritwickdey.LiveServer",
+    "tal7aouy.rainbow-bracket"
+  ]
+}
