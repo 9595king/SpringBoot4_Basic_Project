@@ -39,14 +39,14 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/users/welcome","/userinfos/new").permitAll()
-                            .requestMatchers("/api/users/**").authenticated();
-                })
-                .formLogin(withDefaults())
-                .build();
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(csrf -> csrf.disable()) // API 서버에서는 CSRF 비활성화
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/**").permitAll() // /api 경로 허용
+                        .anyRequest().authenticated()
+                );
+        return http.build();
     }
 
 
