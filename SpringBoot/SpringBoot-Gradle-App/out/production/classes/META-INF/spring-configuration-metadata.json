@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "myboot",
+      "type": "com.base.myspringboot.property.MyBootProperties",
+      "sourceType": "com.base.myspringboot.property.MyBootProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "myboot.age",
+      "type": "java.lang.Integer",
+      "sourceType": "com.base.myspringboot.property.MyBootProperties"
+    },
+    {
+      "name": "myboot.full-name",
+      "type": "java.lang.String",
+      "sourceType": "com.base.myspringboot.property.MyBootProperties"
+    },
+    {
+      "name": "myboot.name",
+      "type": "java.lang.String",
+      "sourceType": "com.base.myspringboot.property.MyBootProperties"
+    }
+  ],
+  "hints": []
+}
