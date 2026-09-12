@@ -11,12 +11,14 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
         <module name="MySpringBoot4Project" />
+        <module name="myspringbootlab" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="MySpringBoot4Project" options="-parameters" />
+      <module name="myspringbootlab" options="-parameters" />
     </option>
   </component>
 </project>
