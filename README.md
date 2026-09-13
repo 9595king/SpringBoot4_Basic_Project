@@ -1,6 +1,5 @@
 ## SpringBoot 와 JPA 활용
-* Student 와 StudentDetail 엔티티
-  * 1:1 매핑 연관관계
+* Student 단일 Entity
 * Entity, Repository
 * Service
   * @Transactional,
@@ -9,4 +8,4 @@
 * RestController
 * Validation
 * Advice 로 Exception Handling
-* CorsConfig 설정# SpringBoot4_Basic_Project
+* CorsConfig 설정
