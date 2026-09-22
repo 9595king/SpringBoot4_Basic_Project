@@ -31,9 +31,8 @@ public class Student {
             cascade = CascadeType.ALL)
     private StudentDetail studentDetail;
 
-    //N:1 Student와 Department 관계에서 N쪽에 해당하는 Student가 Owner이다.
-    //FK 에 와 매핑되는 필드
+    //다대일 지연로딩 - 여러 Student가 하나의 Department에 속함(FK를 가진 주인 쪽)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="department_id")
+    @JoinColumn(name = "department_id")
     private Department department;
 }

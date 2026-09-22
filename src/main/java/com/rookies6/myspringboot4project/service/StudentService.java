@@ -27,7 +27,7 @@ public class StudentService {
 //                .map(studentEntity -> StudentDTO.Response.fromEntity(studentEntity) )
 //                //.map(StudentDTO.Response::fromEntity)
 //                .toList();
-                //.collect(Collectors.toList());
+        //.collect(Collectors.toList());
 
         //findAll() 대신 Fetch Join 을 사용하여 N+1 문제를 해결한다
         return studentRepository.findAllWithStudentDetail()
@@ -36,6 +36,7 @@ public class StudentService {
                 .toList();
 
     }
+
     //PK로 학생 조회 (FETCH JOIN)
     public StudentDTO.Response getStudentById(Long id) {
         Student student = studentRepository.findByIdWithStudentDetail(id)
@@ -43,6 +44,7 @@ public class StudentService {
                         "Student", "id", id));
         return StudentDTO.Response.fromEntity(student);
     }
+
     //학번으로 학생 조회 (FETCH JOIN)
     public StudentDTO.Response getStudentByStudentNumber(String studentNumber) {
         Student student = studentRepository.findByStudentNumber(studentNumber)
@@ -112,6 +114,7 @@ public class StudentService {
             throw new BusinessException(ErrorCode.STUDENT_NUMBER_DUPLICATE,
                     request.getStudentNumber());
         }
+
 
         // Update student basic info
         student.setName(request.getName());
